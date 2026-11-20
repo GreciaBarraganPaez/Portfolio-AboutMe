@@ -22,10 +22,10 @@
 <article class="project reveal"><div class="project-art"><span class="art-label">Swarm Explorer<br>Docking &amp; mapping</span></div><div class="project-copy"><span class="tag">ROS 2 · Gazebo · Mobile robotics</span><h3>Modular Swarm Explorer</h3><p>A team project exploring how modular mobile robots can dock and map their surroundings. I contributed to the mechanical design and simulation integration.</p><a class="project-link" href="https://github.com/GreciaBarraganPaez/SwarmExplorer">View project repository</a></div></article>
 <article class="project reveal"><div class="project-art"><!-- MEDIA: Replace this src to change the Crazyflie photo. --><img src="Images-Videos/CrazyFlie/DroneSimulationControlledMyHandMovement.jpeg" alt="Crazyflie drone simulation controlled by hand movement"><span class="art-label">Crazyflie<br>Hardware tests</span></div><div class="project-copy"><span class="tag">Micro-drones · In progress</span><h3>CrazyDrone</h3><p>Exploring Crazyflie micro-drones as a team, with hands-on connection and bench troubleshooting.</p></div></article>
 <article class="project reveal"><div class="project-art"><span class="art-label">3D-printed<br>Prosthetic hand</span></div><div class="project-copy"><span class="tag">Mechanical design · Prototyping</span><h3>Mechanical Prosthetic Hand</h3><p>My undergraduate thesis at IPN: a cable-driven 3D-printed hand designed to flex its fingers and lift up to 5 kg.</p></div></article>
+<article class="project reveal"><div class="project-art"><span class="art-label">Innovation Academy<br>Environmental project</span></div><div class="project-copy"><span class="tag">Environmental engineering · STEM outreach</span><h3>Innovation Academy for Women of the Americas</h3><p>An environmental project involving asphalt and an initiative supporting women in STEM.</p></div></article>
 </div></section>
 <section id="community" class="community"><div class="section-head reveal"><div><div class="eyebrow">Beyond the lab</div><h2>Community &amp; outreach</h2></div><p>People, ideas and experiences that have shaped the engineer I’m becoming.</p></div><div class="community-grid">
 <article class="community-card reveal"><div class="community-photo">Photo placeholder<br>daad-podcast.jpg</div><h3>DAAD podcast</h3><p>Sharing my student experience in a podcast recording in Cologne.</p></article>
-<article class="community-card reveal"><div class="community-photo">Photo placeholder<br>innovation-academy.jpg</div><h3>Innovation Academy</h3><p>An environmental asphalt project and an initiative supporting women in STEM.</p></article>
 <article class="community-card reveal"><div class="community-photo">Photo placeholder<br>fit-team.jpg</div><h3>FIT-Team</h3><p>Volunteering at a board game night at Hof University.</p></article>
 <article class="community-card reveal"><div class="community-photo">Photo placeholder<br>rotaract.jpg</div><h3>Rotaract</h3><p>Community volunteering in Mexico.</p></article>
 </div></section>
@@ -38,16 +38,5 @@
 <script>
 document.querySelector('.portrait').innerHTML='<img src="Images-Videos/Me/GreciaBarragan_Picture.jpeg" alt="Portrait of Grecia Barragán Páez">';
 document.querySelectorAll('.project-art')[1].insertAdjacentHTML('afterbegin','<img src="Images-Videos/CrazyFlie/DroneSimulationControlledMyHandMovement.jpeg" alt="Crazyflie drone simulation controlled by hand movement">');
-</script>
-<script>
-// -------------------- Move Innovation Academy into Projects --------------------
-const innovationCard=document.querySelector('.community-card:nth-child(2)');
-if(innovationCard){
-  const project=document.createElement('article');
-  project.className='project reveal';
-  project.innerHTML='<div class="project-art"><span class="art-label">Innovation Academy<br>Environmental project</span></div><div class="project-copy"><span class="tag">Environmental engineering · STEM outreach</span><h3>Innovation Academy for Women of the Americas</h3><p>An environmental project involving asphalt, developed through an initiative supporting women in STEM.</p></div>';
-  document.querySelector('.project-grid').appendChild(project);
-  innovationCard.remove();
-}
 </script>
 </body></html>
