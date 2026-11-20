@@ -46,4 +46,13 @@ if(!document.querySelector('.project-aero'))projectGrid.insertAdjacentHTML('befo
 const courseList=document.querySelector('.course-list');
 [['McGuill program','McGuill','Images-Videos/McGuill/Acceptance.jpeg','An academic opportunity that broadened my international perspective and motivation to keep developing as an engineer.'],['KOSPIE','KOSPIE','Images-Videos/KOSPIE/WhatsApp Image 2026-11-20 at 5.38.01 PM.jpeg','A learning experience focused on collaboration, innovation and continuous growth.']].forEach(([oldTitle,title,image,text])=>{const communityCard=[...document.querySelectorAll('.community-card')].find(card=>card.querySelector('h3')?.textContent===oldTitle);if(communityCard)communityCard.remove();if(!courseList.querySelector(`[data-course="${title}"]`))courseList.insertAdjacentHTML('beforeend',`<article class="course" data-course="${title}"><div class="course-mark">✳</div><h3>${title}</h3><p>${text}</p><img class="course-media" src="${image}" alt="${title}"></article>`)});
 </script>
+<style>
+/* -------------------- No media fill backgrounds -------------------- */
+.carousel,.carousel-track,.carousel-slide,.course .carousel,.carousel img,.carousel video,.course-media{background:transparent!important}
+</style>
+<script>
+// -------------------- Project repository links --------------------
+const projectLinks={CrazyDrone:'https://github.com/GreciaBarraganPaez/Crazyflies','Aero Sentinel':'https://github.com/GreciaBarraganPaez/aero-sentinel'};
+document.querySelectorAll('.project').forEach(card=>{const title=card.querySelector('h3')?.textContent;const url=projectLinks[title];if(url&&!card.querySelector('.project-link'))card.querySelector('.project-copy').insertAdjacentHTML('beforeend',`<a class="project-link" href="${url}">View project repository</a>`)});
+</script>
 </body></html>
