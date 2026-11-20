@@ -50,7 +50,7 @@ const mediaPath='Images-Videos/';
 const media=(file,alt)=>file.match(/\.(mp4|webm|mov)$/i)?`<video controls preload="metadata" aria-label="${alt}"><source src="${mediaPath+file}"></video>`:`<img src="${mediaPath+file}" alt="${alt}">`;
 const gallery=(files,alt,single=false)=>`<div class="media-gallery${single?' single':''}">${files.map(file=>media(file,alt)).join('')}</div>`;
 const portrait=document.querySelector('.portrait');
-if(portrait)portrait.innerHTML=gallery(['Me/GreciaBarragan_Picture.jpeg','Me/grecia.jpg'],'Portrait of Grecia Barragán Páez');
+if(portrait)portrait.innerHTML='<img src="Images-Videos/Me/GreciaBarragan_Picture.jpeg" alt="Portrait of Grecia Barragán Páez">';
 const projectArts=document.querySelectorAll('.project-art');
 if(projectArts[0])projectArts[0].innerHTML='<span class="art-label">Swarm Explorer<br>Docking &amp; mapping</span>';
 if(projectArts[1])projectArts[1].innerHTML=gallery(['CrazyFlie/FlyingDrone.mp4','CrazyFlie/DroneSimulationControlledMyHandMovement.jpeg','CrazyFlie/ControllingDrone.jpeg'],'Crazyflie drone testing');
