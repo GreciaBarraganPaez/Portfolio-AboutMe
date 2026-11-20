@@ -39,4 +39,41 @@
 document.querySelector('.portrait').innerHTML='<img src="Images-Videos/Me/GreciaBarragan_Picture.jpeg" alt="Portrait of Grecia Barragán Páez">';
 document.querySelectorAll('.project-art')[1].insertAdjacentHTML('afterbegin','<img src="Images-Videos/CrazyFlie/DroneSimulationControlledMyHandMovement.jpeg" alt="Crazyflie drone simulation controlled by hand movement">');
 </script>
+<style>
+/* -------------------- Media galleries -------------------- */
+.media-gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;width:100%;height:100%;min-height:220px}.media-gallery img,.media-gallery video{width:100%;height:100%;min-height:105px;object-fit:cover;border:0}.media-gallery.single{display:block}.media-gallery.single img,.media-gallery.single video{height:100%;min-height:220px}.community-photo.media-gallery{display:grid;padding:0;background:none}.community-photo.media-gallery img{min-height:0}.community-photo.media-gallery video{width:100%;height:100%;object-fit:cover}.community-card.media-added h3,.community-card.media-added p{margin-inline:1rem}
+</style>
+<script>
+// -------------------- Portfolio media assignments --------------------
+const mediaPath='Images-Videos/';
+const media=(file,alt)=>file.match(/\.(mp4|webm|mov)$/i)?`<video controls preload="metadata" aria-label="${alt}"><source src="${mediaPath+file}"></video>`:`<img src="${mediaPath+file}" alt="${alt}">`;
+const gallery=(files,alt,single=false)=>`<div class="media-gallery${single?' single':''}">${files.map(file=>media(file,alt)).join('')}</div>`;
+const portrait=document.querySelector('.portrait');
+if(portrait)portrait.innerHTML=gallery(['Me/GreciaBarragan_Picture.jpeg','Me/grecia.jpg'],'Portrait of Grecia Barragán Páez');
+const projectArts=document.querySelectorAll('.project-art');
+if(projectArts[0])projectArts[0].innerHTML=gallery(['Robotica/MotorControl.mp4'],'Robot motor control demonstration',true);
+if(projectArts[1])projectArts[1].innerHTML=gallery(['CrazyFlie/FlyingDrone.mp4','CrazyFlie/DroneSimulationControlledMyHandMovement.jpeg','CrazyFlie/ControllingDrone.jpeg'],'Crazyflie drone testing');
+if(projectArts[2])projectArts[2].innerHTML=gallery(['Hand/AssemblyFingers.jpeg','Hand/AssemblyWrist.jpeg','Hand/Finished2.jpeg','Hand/Finished.jpeg','Hand/CalculationsWork.jpeg'],'Mechanical prosthetic hand development');
+const innovation=document.querySelector('.project-grid .project:nth-child(4)');
+if(innovation)innovation.querySelector('.project-art').innerHTML=gallery(['WomenOfTheAmericas/TeamPicture.jpeg','WomenOfTheAmericas/Acceptance.jpeg'],'Innovation Academy team and acceptance');
+const communityCards=document.querySelectorAll('.community-card');
+const communityMedia=[
+  ['Podcast/Setup.jpeg','DAAD podcast recording setup'],
+  ['FIT-GameNight/Team1.jpeg','FIT Team game night'],
+  ['MentorshipProgram/MentorshipProgram.jpeg','Mentorship program'],
+  ['McGuill/Acceptance.jpeg','McGuill program acceptance'],
+  ['KOSPIE/WhatsApp Image 2026-11-20 at 5.38.01 PM.jpeg','KOSPIE program'],
+  ['MentorshipProgram/Mentor1.jpeg','Mentorship with a mentor'],
+  ['MentorshipProgram/LatinoTeam.jpeg','Mentorship Latino team'],
+  ['FIT-GameNight/Organizers.jpeg','FIT Team organizers'],
+  ['FIT-GameNight/HappyTeam.jpeg','FIT Team volunteers']
+];
+communityMedia.forEach(([file,alt],index)=>{
+  let card=communityCards[index];
+  if(!card){card=document.createElement('article');card.className='community-card reveal media-added';card.innerHTML='<div class="community-photo"></div><h3></h3><p></p>';document.querySelector('.community-grid').appendChild(card)}
+  card.querySelector('.community-photo').outerHTML=gallery([file],alt,true).replace('media-gallery single','community-photo media-gallery single');
+  card.querySelector('h3').textContent=alt;
+  card.querySelector('p').textContent='A personal experience, event or learning milestone from my engineering journey.';
+});
+</script>
 </body></html>
