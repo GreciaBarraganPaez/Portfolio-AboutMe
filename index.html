@@ -197,4 +197,22 @@ document.querySelectorAll('.section-head > p').forEach(subtitle=>subtitle.remove
 const innovationProject=[...document.querySelectorAll('.project')].find(card=>card.querySelector('h3')?.textContent==='Innovation Academy for Women of the Americas');
 if(innovationProject&&!innovationProject.querySelector('.innovation-presentation-link'))innovationProject.querySelector('.project-copy').insertAdjacentHTML('beforeend','<a class="project-link innovation-presentation-link" href="PowerPoint/AGACEL%20AGREGADOS%20Y%20ASFALTOS%20SA%20DE%20CV.pptx" target="_blank" rel="noopener">Open presentation ↗</a>');
 </script>
+<style>
+/* -------------------- Final typography, learning and community updates -------------------- */
+.eyebrow,.tag{font-family:Arial,Helvetica,sans-serif!important;letter-spacing:.045em!important;font-weight:700}.learning-courses{background:#e8f3ec!important}.learning-languages{background:#f4eafa!important}.learning-column>h3{font-family:Arial,Helvetica,sans-serif!important;font-size:1.05rem!important;letter-spacing:.04em;text-transform:uppercase}.community-placeholder{display:grid;place-items:center;height:175px;color:#176f70;background:#e7f4f3;font:700 1rem Arial,Helvetica,sans-serif}
+</style>
+<script>
+// -------------------- Community clubs and France Exchange photo --------------------
+(()=>{
+  const community=document.querySelector('.community-grid');if(!community)return;
+  const makeCarousel=(slides,label)=>`<div class="carousel" aria-label="${label}"><div class="carousel-track">${slides.map((src,index)=>`<div class="carousel-slide${index===0?' active':''}"><img src="${src}" alt="${label}"></div>`).join('')}</div><button class="prev" aria-label="Previous image">‹</button><button class="next" aria-label="Next image">›</button><span class="carousel-count"></span></div>`;
+  const bind=(card)=>{const carousel=card.querySelector('.carousel');if(!carousel||carousel.dataset.ready)return;carousel.dataset.ready='true';const slides=[...carousel.querySelectorAll('.carousel-slide')];const counter=carousel.querySelector('.carousel-count');let current=0;const show=index=>{slides[current].classList.remove('active');current=(index+slides.length)%slides.length;slides[current].classList.add('active');counter.textContent=`${current+1} / ${slides.length}`};show(0);carousel.querySelector('.prev')?.addEventListener('click',()=>show(current-1));carousel.querySelector('.next')?.addEventListener('click',()=>show(current+1));};
+  const france=[...community.querySelectorAll('.community-card')].find(card=>card.querySelector('h3')?.textContent==='France Exchange');
+  if(france&&!france.querySelector('.carousel'))france.insertAdjacentHTML('afterbegin',makeCarousel(['Images-Videos/FranceExchange/RotaryFamilyPic.jpeg'],'Rotary Youth Exchange family'));
+  if(!community.querySelector('.running-club')){const card=document.createElement('article');card.className='community-card running-club';card.innerHTML=makeCarousel(['Images-Videos/RunningClub/RunningTeam.jpeg','Images-Videos/RunningClub/Running1.jpeg','Images-Videos/RunningClub/NightRun.jpeg','Images-Videos/RunningClub/Halfmarathon.jpeg'],'Running Club')+'<div class="community-copy"><h3>Running Club</h3><p>I started a running club to bring students together through regular runs, night runs and shared race goals.</p></div>';community.appendChild(card)}
+  if(!community.querySelector('.swimming-club')){const card=document.createElement('article');card.className='community-card swimming-club';card.innerHTML='<div class="community-placeholder">Swimming Club</div><div class="community-copy"><h3>Swimming Club</h3><p>I also created a swimming club to encourage an active and welcoming student community.</p></div>';community.appendChild(card)}
+  community.querySelectorAll('.community-card').forEach(bind);
+  const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let node;while(node=walker.nextNode()){if(node.parentElement?.tagName==='SCRIPT'||node.parentElement?.tagName==='STYLE')continue;node.nodeValue=node.nodeValue.replace(/[—–-]/g,' ')}
+})();
+</script>
 </body></html>
