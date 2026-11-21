@@ -83,4 +83,8 @@ if(!courseSection.querySelector('.language-panel'))courseSection.insertAdjacentH
 const communityGrid=document.querySelector('.community-grid');
 if(communityGrid&&!communityGrid.querySelector('.france-exchange'))communityGrid.insertAdjacentHTML('beforeend',`<article class="community-card france-exchange"><div class="community-copy"><h3>France Exchange</h3><p>An international exchange experience that expanded my cultural and academic perspective.</p>${pdfLink('PDF/Community/FranceExchange_GreciaBarragan.pdf','Open certificate')}</div></article>`);
 </script>
+<style>
+/* Keep cards enlarged only while the pointer is over them. */
+@media(hover:hover){.project:focus-within:not(:hover),.community-card:focus-within:not(:hover),.course:focus-within:not(:hover){z-index:1!important;transform:none!important;box-shadow:none!important}}
+</style>
 </body></html>
