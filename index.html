@@ -192,4 +192,9 @@ window.addEventListener('load',()=>{const courses=document.getElementById('cours
 // Remove section subtitles such as "Current studies and learning milestones."
 document.querySelectorAll('.section-head > p').forEach(subtitle=>subtitle.remove());
 </script>
+<script>
+// -------------------- Innovation Academy presentation --------------------
+const innovationProject=[...document.querySelectorAll('.project')].find(card=>card.querySelector('h3')?.textContent==='Innovation Academy for Women of the Americas');
+if(innovationProject&&!innovationProject.querySelector('.innovation-presentation-link'))innovationProject.querySelector('.project-copy').insertAdjacentHTML('beforeend','<a class="project-link innovation-presentation-link" href="PowerPoint/AGACEL%20AGREGADOS%20Y%20ASFALTOS%20SA%20DE%20CV.pptx" target="_blank" rel="noopener">Open presentation ↗</a>');
+</script>
 </body></html>
