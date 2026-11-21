@@ -180,4 +180,12 @@ if(swarmProject&&!swarmProject.querySelector('.robotics-project-video'))swarmPro
   const carousel=swarm.querySelector('.carousel');const oldPrev=carousel.querySelector('.prev');const oldNext=carousel.querySelector('.next');const prev=oldPrev.cloneNode(true);const next=oldNext.cloneNode(true);oldPrev.replaceWith(prev);oldNext.replaceWith(next);const slides=[summary,splitting];const counter=carousel.querySelector('.carousel-count');let current=0;const show=index=>{slides[current].classList.remove('active');current=(index+slides.length)%slides.length;slides[current].classList.add('active');counter.textContent=`${current+1} / ${slides.length}`};show(0);prev.addEventListener('click',()=>show(current-1));next.addEventListener('click',()=>show(current+1));
 })();
 </script>
+<style>
+/* Force the two learning panels to remain side by side on desktop. */
+@media(min-width:721px){#courses .learning-columns{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;width:100%;max-width:none!important;align-items:start}#courses .learning-column{min-width:0}}
+</style>
+<script>
+// Run after the complete page has loaded so the two panels cannot remain split apart.
+window.addEventListener('load',()=>{const courses=document.getElementById('courses');const languages=document.getElementById('languages');if(!courses||courses.querySelector('.learning-columns'))return;const panel=languages?.querySelector('.language-panel')||courses.querySelector('.language-panel');const list=courses.querySelector('.course-list');if(!panel||!list)return;const columns=document.createElement('div');columns.className='learning-columns';columns.innerHTML='<div class="learning-column learning-courses"><h3>Courses</h3></div><div class="learning-column learning-languages"><h3>Languages</h3></div>';columns.children[0].appendChild(list);columns.children[1].appendChild(panel);courses.appendChild(columns);languages?.remove();});
+</script>
 </body></html>
