@@ -118,4 +118,38 @@ if(nav&&!nav.querySelector('a[href="#languages"]'))nav.querySelector('a[href="#c
 const swarmProject=[...document.querySelectorAll('.project')].find(card=>card.querySelector('h3')?.textContent==='Modular Swarm Explorer');
 if(swarmProject&&!swarmProject.querySelector('.robotics-project-video'))swarmProject.querySelector('.project-copy').insertAdjacentHTML('beforeend','<a class="project-link robotics-project-video" href="Images-Videos/Robotica/MotorControl.mp4" target="_blank" rel="noopener">Watch motor-control video ↗</a>');
 </script>
+<script>
+// -------------------- Reliable Courses and Languages layout --------------------
+(()=>{
+  const courses=document.getElementById('courses');
+  const community=document.getElementById('community');
+  if(!courses||!community)return;
+  courses.querySelector('h2').textContent='Courses';
+  community.before(courses);
+  const list=courses.querySelector('.course-list');
+  [...list.querySelectorAll('.course')].forEach(card=>{
+    const heading=card.querySelector('h3');
+    if(!heading)return;
+    if(heading.textContent==='More learning to come'){card.remove();return;}
+    if(heading.textContent==='Artificial Intelligence & Robotics')heading.textContent='AI Diploma';
+    card.querySelector('.carousel')?.remove();
+    card.querySelector('.course-media')?.remove();
+  });
+  const makeCourse=(title,text,pdf,image)=>{if([...list.querySelectorAll('.course')].some(card=>card.querySelector('h3')?.textContent===title))return;const card=document.createElement('article');card.className='course';card.innerHTML=`<div class="course-mark">✳</div><h3>${title}</h3><p>${text}</p><a class="certificate-link" href="${pdf}" target="_blank" rel="noopener">Open certificate ↗</a>${image?`<a class="resource-link" href="${image}" target="_blank" rel="noopener">Open image ↗</a>`:''}`;list.appendChild(card)};
+  const findCommunity=title=>[...community.querySelectorAll('.community-card')].find(card=>card.querySelector('h3')?.textContent===title);
+  findCommunity('McGuill program')?.remove();findCommunity('KOSPIE')?.remove();
+  makeCourse('McGuill','An academic opportunity that broadened my international perspective.','PDF/Courses/McGill_GreciaBarragan.pdf','Images-Videos/McGuill/Acceptance.jpeg');
+  makeCourse('KOSPIE','A learning experience focused on collaboration and innovation.','PDF/Courses/Kospie.pdf','Images-Videos/KOSPIE/WhatsApp Image 2026-11-20 at 5.38.01 PM.jpeg');
+  const robotics=[...list.querySelectorAll('.course')].find(card=>card.querySelector('h3')?.textContent==='Advanced Robotics');
+  if(robotics&&!robotics.querySelector('.robotics-video-link'))robotics.insertAdjacentHTML('beforeend','<a class="resource-link robotics-video-link" href="Images-Videos/Robotica/MotorControl.mp4" target="_blank" rel="noopener">Watch robotics video ↗</a>');
+  const ai=[...list.querySelectorAll('.course')].find(card=>card.querySelector('h3')?.textContent==='AI Diploma');
+  if(ai&&!ai.querySelector('.ai-modules-link'))ai.insertAdjacentHTML('beforeend','<a class="certificate-link ai-modules-link" href="PDF/Courses/Modules_AIDiploma_GreciaBarragan.pdf" target="_blank" rel="noopener">View diploma modules ↗</a>');
+  let languages=document.getElementById('languages');
+  if(!languages){languages=document.createElement('section');languages.id='languages';languages.className='languages';languages.innerHTML='<div class="section-head"><div><div class="eyebrow">Language skills</div><h2>Languages</h2></div><p>Click a certificate to open it in a new tab.</p></div><div class="language-panel"><article class="language-card"><h3>German — B2</h3><p>Certified language proficiency.</p><a class="certificate-link" href="PDF/Languages/TestDaf_GreciBarragan.pdf" target="_blank" rel="noopener">Open certificate ↗</a></article><article class="language-card"><h3>French — B2</h3><p>DELF language certification.</p><a class="certificate-link" href="PDF/Languages/DELF B2_GreciaBarragan.pdf" target="_blank" rel="noopener">Open certificate ↗</a></article><article class="language-card"><h3>English</h3><p>TOEFL score report.</p><a class="certificate-link" href="PDF/Languages/Grecia_Barragan_TOEFLscore.pdf" target="_blank" rel="noopener">Open score report ↗</a></article></div>';community.before(languages)}
+  const nav=document.querySelector('nav');
+  if(nav&&!nav.querySelector('a[href="#languages"]'))nav.querySelector('a[href="#courses"]').insertAdjacentHTML('afterend','<a href="#languages">Languages</a>');
+  const swarm=[...document.querySelectorAll('.project')].find(card=>card.querySelector('h3')?.textContent==='Modular Swarm Explorer');
+  if(swarm&&!swarm.querySelector('.robotics-project-video'))swarm.querySelector('.project-copy').insertAdjacentHTML('beforeend','<a class="project-link robotics-project-video" href="Images-Videos/Robotica/MotorControl.mp4" target="_blank" rel="noopener">Watch motor-control video ↗</a>');
+})();
+</script>
 </body></html>
