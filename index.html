@@ -49,5 +49,18 @@ h2,.section-title h2{font-family:Arial,Helvetica,sans-serif!important;font-weigh
 <article class="community-card"><div class="community-media"><div class="swim">Swimming Club</div></div><div class="community-copy"><h3>Swimming Club</h3><p>I also created a swimming club for an active and welcoming student community.</p></div></article>
 </div></section></main>
 <footer id="contact" class="contact"><div><h2>Let’s connect</h2><p>I’d be happy to talk about robotics, AI and engineering.</p></div><div><a href="https://github.com/GreciaBarraganPaez" target="_blank">GitHub · GreciaBarraganPaez</a><br><a href="https://www.linkedin.com/in/grecia-barrag%C3%A1n-p%C3%A1ez-aa7639195/" target="_blank">LinkedIn · Grecia Barragán Páez</a></div></footer>
-<script>document.querySelectorAll('.carousel').forEach(c=>{const s=[...c.querySelectorAll('.slide')],n=c.querySelector('.count');let i=0;const show=x=>{s[i].classList.remove('active');i=(x+s.length)%s.length;s[i].classList.add('active');if(n)n.textContent=`${i+1} / ${s.length}`};show(0);c.querySelector('.prev')?.addEventListener('click',()=>show(i-1));c.querySelector('.next')?.addEventListener('click',()=>show(i+1))});</script>
+<script>
+/* Add every supplementary project and community photo to its matching carousel. */
+const extraCarouselMedia={
+  'FIT Team game night':['Images-Videos/FIT-GameNight/Organizers.jpeg'],
+  'Mechanical Prosthetic Hand':['Images-Videos/Hand/AssemblyWrist.jpeg','Images-Videos/Hand/Finished.jpeg'],
+  'Mentorship Program':['Images-Videos/MentorshipProgram/Mentor1.jpeg'],
+  'Running Club':['Images-Videos/RunningClub/Running1.jpeg']
+};
+document.querySelectorAll('.project,.community-card').forEach(card=>{const title=card.querySelector('h3')?.textContent.trim(),carousel=card.querySelector('.carousel');(extraCarouselMedia[title]||[]).forEach(src=>{const slide=document.createElement('div');slide.className='slide';const image=document.createElement('img');image.src=src;image.alt=`${title} photo`;slide.append(image);carousel?.insertBefore(slide,carousel.querySelector('.arrow'))})});
+/* Courses use links instead of image previews so the compact layout stays intact. */
+const extraCourseMedia={McGuill:'Images-Videos/McGuill/Acceptance.jpeg',KOSPIE:'Images-Videos/KOSPIE/WhatsApp Image 2026-11-20 at 5.38.01 PM.jpeg'};
+document.querySelectorAll('.course').forEach(course=>{const title=course.querySelector('h3')?.textContent.trim(),src=extraCourseMedia[title];if(src){const link=document.createElement('a');link.className='doc-link';link.href=src;link.target='_blank';link.textContent='View course photo ↗';course.append(link)}});
+document.querySelectorAll('.carousel').forEach(c=>{const s=[...c.querySelectorAll('.slide')],n=c.querySelector('.count');let i=0;const show=x=>{s[i].classList.remove('active');i=(x+s.length)%s.length;s[i].classList.add('active');if(n)n.textContent=`${i+1} / ${s.length}`};show(0);c.querySelector('.prev')?.addEventListener('click',()=>show(i-1));c.querySelector('.next')?.addEventListener('click',()=>show(i+1))});
+</script>
 </body></html>
