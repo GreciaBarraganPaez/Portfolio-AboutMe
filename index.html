@@ -9,6 +9,8 @@ h1,h2{font-family:'DM Sans',Arial,Helvetica,sans-serif;font-weight:700;letter-sp
 .learning>.section-title{display:none}.learning-panel::before{display:block;margin-bottom:.55rem;font-family:Arial,Helvetica,sans-serif;font-size:.78rem;font-weight:700;letter-spacing:.045em;text-transform:uppercase;color:var(--violet)}.courses-panel::before{content:'Learning by building'}.languages-panel::before{content:'Connecting across cultures'}
 /* Keep Courses visually anchored to the left, away from the Languages panel. */
 .courses-panel{padding-left:5vw}.courses-panel>h3,.courses-panel>article{max-width:560px}
+/* Let the two learning colors meet without white divider borders or gaps. */
+.learning{padding-block:0}.learning-panel{border:0}@media(max-width:760px){.learning-grid{gap:0}}
 /* Keep one image per Community card inside its media frame. */
 .community-media>img,.community-media>video{display:block;width:100%;height:100%;object-fit:cover}.community-media{overflow:hidden}
 /* Keep direct project previews inside the project media frame. */
