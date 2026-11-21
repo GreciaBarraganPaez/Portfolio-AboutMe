@@ -87,4 +87,31 @@ if(communityGrid&&!communityGrid.querySelector('.france-exchange'))communityGrid
 /* Keep cards enlarged only while the pointer is over them. */
 @media(hover:hover){.project:focus-within:not(:hover),.community-card:focus-within:not(:hover),.course:focus-within:not(:hover){z-index:1!important;transform:none!important;box-shadow:none!important}}
 </style>
+<style>
+/* -------------------- Compact courses and standalone languages -------------------- */
+.course-list{grid-template-columns:1fr!important;max-width:760px;margin-inline:auto}.course{display:grid;grid-template-columns:34px minmax(0,1fr);column-gap:.8rem;min-height:0!important;padding:.9rem 1.1rem}.course-mark{grid-row:1/5;margin:0}.course h3,.course p,.course .certificate-link,.course .resource-link{grid-column:2}.course .carousel,.course .course-media{display:none!important}.course .certificate-link,.course .resource-link{display:block;margin-top:.38rem}.resource-link{color:#176f70;font-size:.86rem;font-weight:700}.languages{background:#fff;border-block:1px solid var(--line)}.languages .language-panel{margin-top:0}.languages .section-head{margin-bottom:1.25rem}
+</style>
+<script>
+// -------------------- Separate Courses and Languages --------------------
+const compactCourses=document.getElementById('courses');
+compactCourses.querySelector('h2').textContent='Courses';
+const compactCourseList=compactCourses.querySelector('.course-list');
+[...compactCourseList.querySelectorAll('.course')].forEach(card=>{
+  const title=card.querySelector('h3')?.textContent;
+  if(title==='More learning to come'){card.remove();return;}
+  if(title==='Artificial Intelligence & Robotics')card.querySelector('h3').textContent='AI Diploma';
+  card.querySelector('.carousel')?.remove();
+  card.querySelector('.course-media')?.remove();
+});
+const roboticsCourse=[...compactCourseList.querySelectorAll('.course')].find(card=>card.querySelector('h3')?.textContent==='Advanced Robotics');
+if(roboticsCourse&&!roboticsCourse.querySelector('.robotics-video-link'))roboticsCourse.insertAdjacentHTML('beforeend','<a class="resource-link robotics-video-link" href="Images-Videos/Robotica/MotorControl.mp4" target="_blank" rel="noopener">Watch robotics video ↗</a>');
+const courseImageLinks={McGuill:'Images-Videos/McGuill/Acceptance.jpeg',KOSPIE:'Images-Videos/KOSPIE/WhatsApp Image 2026-11-20 at 5.38.01 PM.jpeg'};
+[...compactCourseList.querySelectorAll('.course')].forEach(card=>{const title=card.querySelector('h3')?.textContent;const image=courseImageLinks[title];if(image&&!card.querySelector('.resource-link'))card.insertAdjacentHTML('beforeend',`<a class="resource-link" href="${image}" target="_blank" rel="noopener">Open image ↗</a>`)});
+const languagePanel=compactCourses.querySelector('.language-panel');
+if(languagePanel&&!document.getElementById('languages')){const languageSection=document.createElement('section');languageSection.id='languages';languageSection.className='languages';languageSection.innerHTML='<div class="section-head"><div><div class="eyebrow">Language skills</div><h2>Languages</h2></div><p>Click a certificate to open it in a new tab.</p></div>';languageSection.appendChild(languagePanel);document.getElementById('community').before(languageSection);}
+const nav=document.querySelector('nav');
+if(nav&&!nav.querySelector('a[href="#languages"]'))nav.querySelector('a[href="#courses"]').insertAdjacentHTML('afterend','<a href="#languages">Languages</a>');
+const swarmProject=[...document.querySelectorAll('.project')].find(card=>card.querySelector('h3')?.textContent==='Modular Swarm Explorer');
+if(swarmProject&&!swarmProject.querySelector('.robotics-project-video'))swarmProject.querySelector('.project-copy').insertAdjacentHTML('beforeend','<a class="project-link robotics-project-video" href="Images-Videos/Robotica/MotorControl.mp4" target="_blank" rel="noopener">Watch motor-control video ↗</a>');
+</script>
 </body></html>
