@@ -188,4 +188,8 @@ if(swarmProject&&!swarmProject.querySelector('.robotics-project-video'))swarmPro
 // Run after the complete page has loaded so the two panels cannot remain split apart.
 window.addEventListener('load',()=>{const courses=document.getElementById('courses');const languages=document.getElementById('languages');if(!courses||courses.querySelector('.learning-columns'))return;const panel=languages?.querySelector('.language-panel')||courses.querySelector('.language-panel');const list=courses.querySelector('.course-list');if(!panel||!list)return;const columns=document.createElement('div');columns.className='learning-columns';columns.innerHTML='<div class="learning-column learning-courses"><h3>Courses</h3></div><div class="learning-column learning-languages"><h3>Languages</h3></div>';columns.children[0].appendChild(list);columns.children[1].appendChild(panel);courses.appendChild(columns);languages?.remove();});
 </script>
+<script>
+// Remove section subtitles such as "Current studies and learning milestones."
+document.querySelectorAll('.section-head > p').forEach(subtitle=>subtitle.remove());
+</script>
 </body></html>
