@@ -152,4 +152,32 @@ if(swarmProject&&!swarmProject.querySelector('.robotics-project-video'))swarmPro
   if(swarm&&!swarm.querySelector('.robotics-project-video'))swarm.querySelector('.project-copy').insertAdjacentHTML('beforeend','<a class="project-link robotics-project-video" href="Images-Videos/Robotica/MotorControl.mp4" target="_blank" rel="noopener">Watch motor-control video ↗</a>');
 })();
 </script>
+<style>
+/* -------------------- Compact projects and combined learning section -------------------- */
+@media(min-width:1050px){.project-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}.project{grid-template-rows:150px 1fr!important;min-height:315px!important}.project-copy{padding:.85rem .9rem 1rem!important}.project-copy p{font-size:.84rem!important}.project .carousel{min-height:150px!important}}
+.learning-columns{display:grid;grid-template-columns:1.15fr .85fr;gap:1rem;max-width:980px;margin:0 auto}.learning-column{padding:1.1rem;border-radius:16px}.learning-courses{background:#eef5ef}.learning-languages{background:#f5eef7}.learning-column>h3{margin-bottom:.8rem}.learning-columns .course-list{max-width:none}.learning-columns .language-panel{margin:0;display:grid;grid-template-columns:1fr;gap:.65rem}.learning-columns .language-card{background:#fff}.learning-columns .course{background:#fff}@media(max-width:720px){.learning-columns{grid-template-columns:1fr}}
+</style>
+<script>
+// -------------------- Final learning layout and Swarm main video --------------------
+(()=>{
+  const courses=document.getElementById('courses');
+  const languageSection=document.getElementById('languages');
+  if(!courses)return;
+  courses.querySelector('h2').textContent='Courses & Languages';
+  const languagePanel=languageSection?.querySelector('.language-panel')||courses.querySelector('.language-panel');
+  const courseList=courses.querySelector('.course-list');
+  if(courseList&&languagePanel&&!courses.querySelector('.learning-columns')){const columns=document.createElement('div');columns.className='learning-columns';const courseColumn=document.createElement('div');courseColumn.className='learning-column learning-courses';courseColumn.innerHTML='<h3>Courses</h3>';const languageColumn=document.createElement('div');languageColumn.className='learning-column learning-languages';languageColumn.innerHTML='<h3>Languages</h3>';courseColumn.appendChild(courseList);languageColumn.appendChild(languagePanel);columns.append(courseColumn,languageColumn);courses.appendChild(columns);languageSection?.remove()}
+  const german=[...courses.querySelectorAll('.language-card')].find(card=>card.querySelector('h3')?.textContent.includes('German'));
+  if(german){const link=german.querySelector('.certificate-link');if(link)link.href='PDF/Languages/GermanB2.pdf';}
+  document.querySelector('nav a[href="#languages"]')?.remove();
+  const swarm=[...document.querySelectorAll('.project')].find(card=>card.querySelector('h3')?.textContent==='Modular Swarm Explorer');
+  if(!swarm)return;
+  const track=swarm.querySelector('.carousel-track');
+  const summary=track.querySelector('source[src*="Summary.mp4"]')?.closest('.carousel-slide');
+  const splitting=track.querySelector('source[src*="Splitting.mp4"]')?.closest('.carousel-slide');
+  if(!summary||!splitting)return;
+  track.replaceChildren(summary,splitting);summary.classList.add('active');splitting.classList.remove('active');
+  const carousel=swarm.querySelector('.carousel');const oldPrev=carousel.querySelector('.prev');const oldNext=carousel.querySelector('.next');const prev=oldPrev.cloneNode(true);const next=oldNext.cloneNode(true);oldPrev.replaceWith(prev);oldNext.replaceWith(next);const slides=[summary,splitting];const counter=carousel.querySelector('.carousel-count');let current=0;const show=index=>{slides[current].classList.remove('active');current=(index+slides.length)%slides.length;slides[current].classList.add('active');counter.textContent=`${current+1} / ${slides.length}`};show(0);prev.addEventListener('click',()=>show(current-1));next.addEventListener('click',()=>show(current+1));
+})();
+</script>
 </body></html>
